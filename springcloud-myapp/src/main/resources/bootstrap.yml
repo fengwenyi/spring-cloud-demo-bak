@@ -1,0 +1,11 @@
+
+server:
+  port: 9098
+spring:
+  application:
+    name: myapp
+  cloud:
+    config:
+      uri: http://localhost:${config.port:9097}
+      profile: dev           # 指定profile
+      label: master           # 指定gitlab仓库的分支

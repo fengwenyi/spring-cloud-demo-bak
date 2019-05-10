@@ -1,0 +1,72 @@
+
+spring:
+  profiles:
+    include: [core]
+
+  datasource:
+    #driver-class-name: oracle.jdbc.driver.OracleDriver
+    driver-class-name: oracle.jdbc.OracleDriver
+    url: jdbc:oracle:thin:@ip:orcl
+    username: 
+    password: 
+
+  cloud:
+    # zookeeper
+    zookeeper:
+      connect-string: ip1:2181,ip2:2181,ip3:2181
+
+  data:
+    # mongodb
+    mongodb:
+      uri: mongodb://user:user@ip:27017/foo/common
+
+    # ES
+    elasticsearch:
+      cluster-nodes: ip1:9300,ip2:9300,ip3:9300
+      cluster-name: 
+  elasticsearch:
+    rest:
+      uris: ["http://ip1:9200","http://ip2:9200","http://ip3:9200"]
+
+  # redis
+  redis:
+    cluster:
+      nodes: ip1:7001,ip2:7002,ip3:7003,ip4:7004,ip5:7005,ip6:7006
+    password: 
+
+  rabbitmq:
+    username: 
+    password: 
+    addresses: ip1:5672,ip2:5672,ip3:5672
+
+  kafka:
+    bootstrap-servers: ip1:9092,ip2:9092,ip3:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      group-id: js_api
+      enable-auto-commit: true
+      auto-commit-interval: 1000
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
+#  boot:
+#    admin:
+#      client:
+#        url: http://localhost:8899
+
+mybatis-plus:
+  global-config:
+    # 刷新mapper 调试神器
+    refresh: true
+  configuration:
+    # 日志
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+#日志
+logging:
+  #日志配置文件位置
+  config: classpath:log/logback-spring.xml
+  #日志打印位置，这里是默认在项目根路径下
+  path: log/${spring.application.name}/dev

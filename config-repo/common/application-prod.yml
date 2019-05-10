@@ -1,0 +1,57 @@
+
+spring:
+  profiles:
+    include: [core]
+  datasource:
+    url: jdbc:oracle:thin:@ip:1521/name
+    driver-class-name: oracle.jdbc.OracleDriver
+    username: 
+    password: 
+
+  cloud:
+    # zookeeper
+    zookeeper:
+      connect-string: ip1:2288,ip2:2288,ip3:2288
+
+  data:
+    # mongodb
+    mongodb:
+      uri: mongodb://user:user@ip1:27111,ip2:27111,ip3:27111/foo
+
+    # es
+    elasticsearch:
+      cluster-nodes: ip1:9300,ip2:9300,ip3:9300
+      cluster-name: 
+  elasticsearch:
+    rest:
+      uris: ["http://ip1:9900","http://ip2:9900","http://ip3:9900"]
+
+  # redis
+  redis:
+    cluster:
+      nodes: ip1:7001,ip2:7002,ip3:7003,ip4:7004,ip5:7005,ip6:7006
+    password: 
+
+  rabbitmq:
+    username: 
+    password: 
+    addresses: ip1:5672,ip2:5672,ip3:5672
+
+  kafka:
+    bootstrap-servers: ip1:10012,ip2:10012,ip3:10012
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      group-id: js_api
+      enable-auto-commit: true
+      auto-commit-interval: 1000
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
+#日志
+logging:
+  #日志配置文件位置
+  config: classpath:log/logback-spring.xml
+  #日志打印位置，这里是默认在项目根路径下
+  path: log/${spring.application.name}/prod

@@ -1,0 +1,29 @@
+
+spring:
+  profiles:
+    include: [core]
+  datasource:
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@ip/orcl
+    username: 
+    password: 
+  cloud:
+    # zookeeper
+    zookeeper:
+      connect-string: ip:2181
+  # redis
+  redis:
+    host: ip
+    port: 
+
+  rabbitmq:
+    username: 
+    password: 
+    addresses: ip:5672
+
+#日志
+logging:
+  #日志配置文件位置
+  config: classpath:log/logback-spring.xml
+  #日志打印位置，这里是默认在项目根路径下
+  path: log/${spring.application.name}/test

@@ -1,0 +1,17 @@
+
+server:
+  port: 9097
+spring:
+  application:
+    name: springcloud-config
+  cloud:
+    # zookeeper
+    zookeeper:
+      connect-string: 192.168.1.200:2181,192.168.1.206:2181,192.168.1.207:2181
+    config:
+      server:
+        git:
+          uri: http://192.168.1.10/fengwenyi/config-repo.git   # 配置gitlab仓库的地址，注意，此处必须以.git结尾
+          search-paths: common,myapp1,myapp2                   # gitlab仓库地址下的相对地址，可以配置多个，用,分割。
+          username: fengwenyi                                  # gitlab仓库的账号
+          password: xfsy2018                                   # gitlab仓库的密码

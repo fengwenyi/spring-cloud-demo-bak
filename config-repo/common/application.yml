@@ -1,0 +1,115 @@
+
+management:
+  endpoints:
+    web:
+      exposure:
+        #默认：health,info，采用默认
+        include: "*"
+      #默认：/actuator/*，采用默认
+      #通过http://ip:port/actuator/health访问
+      #修改后访问：http://ip:port/jsdz/health
+      #修改后服务端也需要做相应的修改，不然会造成无法监控
+      #base-path: /actuator/*
+  endpoint:
+    health:
+      enabled: true         #是否启用 health端点
+      show-details: ALWAYS  #显示完整的健康详情
+
+
+
+#--必须配置，监控
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        #默认：health,info
+#        include: "*"
+#      #默认：/actuator/*
+#      #通过http://ip:port/actuator/health访问
+#      #修改后访问：http://ip:port/jsdz/health
+#      #修改后服务端也需要做相应的修改，不然会造成无法监控
+#      #base-path: /actuator/*
+#  endpoint:
+#    health:
+#      enabled: true         #是否启用 health端点
+#      show-details: ALWAYS  #何时显示完整的健康详情
+#  #监控健康指标，默认全部打开
+#  #关闭redis监控指标关闭
+#  health:
+#    redis:
+#      enabled: false
+#    mongo:
+#      enabled: false
+#    elasticsearch:
+#      enabled: false
+
+
+#--必须配置
+#info:
+#  app:
+#    name: "@project.artifactId@"
+#    desc: '@project.desc@'
+#    verion: '@project.version@'
+#    encoding: '@project.build.sourceEncoding@'
+#    java:
+#      source: '@java.version@'
+#    author: 'Erwin Feng'
+#    blog: 'https://fengwenyi.com'
+
+#--配置范例
+#info:
+#  project:
+#    Name: '@project.artifactId@'
+#    Version:  '@project.version@'
+#    Start: 'java -jar @project.artifactId@'
+#  Author: '冯文议'
+
+server:
+  tomcat:
+    uri-encoding: UTF-8
+
+spring:
+  http:
+    encoding:
+      enabled: true
+      charset: UTF-8
+      force: true
+  # freemarker
+  freemarker:
+    content-type: text/html
+    suffix: .html
+
+  # druid
+  datasource:
+    druid:
+      filters: stat,wall,log4j
+      maxActive: 5
+      initialSize: 2
+      maxWait: 60000
+      minIdle: 1
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: select 'x'
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxOpenPreparedStatements: 20
+      connection-properties: druid.stat.merggSql=ture;druid.stat.slowSqlMillis=5000
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  #实体扫描，多个package用逗号或者分号分隔
+  type-aliases-package: com.js.model
+  global-config:
+    db-config:
+      #主键类型  0:"数据库ID自增", 1:"用户输入ID",2:"全局唯一ID (数字类型唯一ID)", 3:"全局唯一ID UUID";
+      id-type: ID_WORKER
+      #字段策略 0:"忽略判断",1:"非 NULL 判断"),2:"非空判断"
+      field-strategy: NOT_EMPTY
+      db-type: oracle
+      logic-not-delete-value: 0
+      logic-delete-value: 1
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false

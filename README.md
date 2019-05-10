@@ -11,4 +11,6 @@ Spring Cloud 学习笔记，以及一些DEMO
  | --- | --- |
  | eureka-service | Eureka服务注册中心 |
  | feign-api-service | Feign调用示例API服务端 |
+ | springcloud-config | Spring Cloud 配置中心服务 |
+ | springcloud-myapp | Spring Cloud 应用服务 |
  
